@@ -19,11 +19,41 @@
  */
 function numIdenticalPairs(nums) {
   // implement here
+  let total = 0;
+  let freq = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    if (freq.get(nums[i])) {
+      total += freq.get(nums[i]);
+      freq.set(nums[i], freq.get(nums[i]) + 1);
+    } else {
+      freq.set(nums[i], 1);
+    }
+  }
+  return total;
 }
 
 /**
  * Given a string s, remove the vowels 'a', 'e', 'i', 'o', and 'u' from it, and return the new string.
+ * abceeijkl = bcjkl
  */
 function removeVowels(s) {
   // implement here
+  let set = new Set(["a", "e", "i", "o", "u"]);
+  let ret = "";
+  for (const c of s) {
+    if (!set.has(c)) {
+      ret += c;
+    }
+  }
+  return ret;
 }
+
+let nums = [1, 2, 3, 1, 1, 3];
+console.log(numIdenticalPairs(nums));
+nums = [1, 1, 1, 1];
+console.log(numIdenticalPairs(nums));
+nums = [1, 2, 3];
+console.log(numIdenticalPairs(nums));
+
+let s = "abceeijkl";
+console.log(removeVowels(s));
