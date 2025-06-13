@@ -1,11 +1,11 @@
 function f() {
-  var a = 1,
+  var a = 2,
     x = 1;
   function f1() {
     var b = 1,
       x = 'a';
     function f2() {
-      var c = 1,
+      var c = 3,
         x = 2;
       console.log('inside f2', 'a:', a, 'b:', b, 'c:', c, 'x:', x);
     }

@@ -4,4 +4,15 @@
  */
 function sum() {
     // implement here
+    if (arguments.length === 2){
+        return arguments[0] + arguments[1];
+    }
+    if(arguments.length === 1){
+        const a = arguments[0];
+        return function(b) {
+            return a+b;
+        }
+    }
 }
+console.log(sum(2)(3) === 5);
+console.log(sum(2, 3) === 5);

@@ -23,7 +23,7 @@ const { name: firstName, age: yearsOld, city: hometown } = person;
 
 console.log(firstName); // Output: John
 console.log(yearsOld); // Output: 30
-console.log(hometown); // Output: New York
+console.log(hometown); // Output: Santa Clara
 
 // Destructuring an object with a default value
 const { zip: postalCode = '95054' } = person;
@@ -35,14 +35,14 @@ const printPerson = ({ name, age, city }) => {
   console.log(`Name: ${name}, Age: ${age}, City: ${city}`);
 };
 
-printPerson(person); // Output: Name: John, Age: 30, City: New York
+printPerson(person); // Output: Name: John, Age: 30, City: Santa Clara
 
 // Desctructuring in function parameters with a default value
-const printPersonWithDefault = ({ name, age, city = 'Santa Clara' }) => {
+const printPersonWithDefault = ({ name, age, city = 'New York' }) => {
   console.log(`Name: ${name}, Age: ${age}, City: ${city}`);
 };
 
-printPersonWithDefault(person); // Output: Name: John, Age: 30, City: New York
+printPersonWithDefault(person); // Output: Name: John, Age: 30, City: Santa Clara
 
 // Desctructuring in nested objects
 const personWithNestedObject = {

@@ -42,7 +42,8 @@ if (date1 < date2) {
 const startDate = new Date(2023, 0, 1);
 const endDate = new Date(2023, 2, 15);
 
-const timeDifference = endDate - startDate;
+const timeDifference = endDate - startDate; //the result is the difference in milliseconds.
 const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
+console.log(`Time Difference is ${timeDifference} milliseconds.`);
 console.log(`Number of days between the two dates: ${daysDifference}`);

@@ -27,7 +27,7 @@ defaultArgs(3);
 defaultArgs();
 
 function test(a, b, options = {}) {
-  console.log(user.id, user.name);
+  console.log(options.id, options.name);
 }
 
 test({ id: 1, name: 'aaron' });
