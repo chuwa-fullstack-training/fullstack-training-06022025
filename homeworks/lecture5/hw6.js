@@ -1,3 +1,5 @@
+import https from "https";
+
 /**
  * write a function to have an arbitrary number of promises run in sequence
  * and return an array of the results
@@ -12,17 +14,15 @@ function sequencePromise(urls) {
     return getJSON(url).then((response) => results.push(response));
   }
   // implement your code here
+  let chain = Promise.resolve();
   for (const url of urls) {
-    try {
-      fetchOne(url);
-    } catch (e) {
-      throw new Error(e);
-    }
+    chain = chain.then(() => fetchOne(url));
   }
-  return results;
+
+  return chain.then(() => results);
 }
 
-const https = require("https");
+// const https = require("https");
 
 function getJSON(url) {
   // copy from hw5.js
@@ -69,4 +69,5 @@ const urls = [
   "https://api.github.com/search/repositories?q=nodejs",
 ];
 
-console.log(sequencePromise(urls));
+const result = await sequencePromise(urls);
+console.log(result);
