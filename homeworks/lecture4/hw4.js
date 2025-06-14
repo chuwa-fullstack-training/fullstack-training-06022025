@@ -12,4 +12,6 @@
  */
 const intersection = (nums1, nums2) => {
   // Your solution here
+  return nums1.filter(x => nums2.includes(x))
 };
+console.log(intersection([1,2,2,1], [2,2]));

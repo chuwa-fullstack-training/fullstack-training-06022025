@@ -15,3 +15,18 @@
  * const arr = [[0, 1], [2, 3], [4, [5, 6]]];
  * Expected output: [0, 1, 2, 3, 4, 5, 6]
  */
+
+function doubled(arr){
+    return arr.map(x=>x*2);
+}
+console.log(doubled([1,2,3]));
+
+function even(arr) {
+    return arr.filter(x=> x%2 === 0);
+}
+console.log(even([1,2,3,4,5,6]));
+
+function reverse(str) {
+    return str.split('').reduce((acc, ch) => ch+acc, '');
+}
+console.log(reverse("Hello World"));
