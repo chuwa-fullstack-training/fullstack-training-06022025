@@ -51,17 +51,11 @@ function printList() {
 const lights = ["red", "green", "yellow"];
 function trafficLight() {
   // your code here
-  let index = 1;
+  let index = 0;
   return new Promise((resolve) => {
     setInterval(() => {
-      if (index % 3 === 1) {
-        console.log("red");
-      } else if (index % 3 === 2) {
-        console.log("green");
-      } else if (index % 3 === 0) {
-        console.log("yellow");
-      }
-      index++;
+      console.log(lights[index]);
+      index = (index + 1) % lights.length;
     }, 1000);
   });
 }
