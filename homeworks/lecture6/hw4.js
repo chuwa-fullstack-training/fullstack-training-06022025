@@ -5,5 +5,9 @@
  * @param {number} num
  */
 function format(num) {
-  // your code here
+  return num.toLocaleString('en-US');
 }
+
+console.log(format(12345678));
+console.log(format(1234.56));
+
