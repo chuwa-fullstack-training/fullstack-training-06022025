@@ -14,3 +14,20 @@
  */
 
 // your code here
+
+const fs = require("fs");
+const path = require("path");
+
+const dir = process.argv[2];
+const ext = "." + process.argv[3];
+fs.readdir(dir, (error, files) => {
+  if (error) {
+    throw error;
+  } else {
+    files.map((item) => {
+      if (path.extname(item) === ext) {
+        console.log(item);
+      }
+    });
+  }
+});
