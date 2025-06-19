@@ -11,6 +11,19 @@
  * user.checkPassword('123'); // false
  * user.password; // undefined
  */
-function User() {
-    // implement here
-}
+const User = (function () {
+  let password = null; // shared across all instances!
+
+  return class {
+    setPassword(passWord) {
+      if (password) {
+        throw new Error('Password is already set');
+      }
+      password = passWord;
+    }
+
+    checkPassword(passWord) {
+      return password === passWord;
+    }
+  }
+})();

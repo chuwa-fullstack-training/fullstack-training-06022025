@@ -8,8 +8,8 @@
  * @param {string[]} str
  */
 function reverseWords(str) {
-  // your code here
+  // your code here                                            //remove the extra space at the end
+  return  str.split(' ').reduce((acc, word)=>word + ' '+acc, '').trim();
 }
 
-const input = 'the sky is blue'.split(''); // ['t', 'h', 'e', ' ', 's', 'k', 'y', ' ', 'i', 's', ' ', 'b', 'l', 'u', 'e']
-reverseWords(input);
+const input = 'the sky is blue';

@@ -12,13 +12,18 @@ function sequencePromise(urls) {
     return getJSON(url).then(response => results.push(response));
   }
   // implement your code here
+              //handle promise one by one 
+  return urls.reduce((prePromise, url) => {
+    return prePromise.then(() => fetchOne(url));
+  }, Promise.resolve()) //add on promise to initialized resolve promise
+  .then(() => results); // then return result
 
-  return results;
+
 }
 
 // option 1
 function getJSON(url) {
-  // this is from hw5
+  return fetch(url).then(res => res.json());
 }
 
 // option 2
@@ -32,3 +37,7 @@ const urls = [
   'https://api.github.com/search/repositories?q=react',
   'https://api.github.com/search/repositories?q=nodejs'
 ];
+
+sequencePromise(urls).then(results =>{
+  console.log('results:', results);
+});
