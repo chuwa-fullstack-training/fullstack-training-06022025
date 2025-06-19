@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Welcome to Nodejs tutorial MVC version
+
+  form(action="/create-post" method="POST" style="display: flex; align-items: flex-end; gap: 5px;")
+    input(type="text" id="title" name="title")
+    input(type="text" id="content" name="content")
+    button(type="submit") Submit
+
+  if data
+    div.submitted-data
+      h2 Submitted Data:
+      div Title: #{data.title}
+      div Content: #{data.content}
