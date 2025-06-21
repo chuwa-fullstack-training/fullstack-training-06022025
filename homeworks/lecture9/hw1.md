@@ -12,6 +12,8 @@ Create a set of APIs to manage employees and companies. The data should be store
 - Get all employees
 - Get all employees of a company
 
+* - Get all managers of a company
+
 The Company schema should have the following fields:
 
 - name: String
