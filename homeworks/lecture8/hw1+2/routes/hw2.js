@@ -42,3 +42,32 @@
  *  }
  * }
  */
+const express = require('express');
+const axios = require('axios');
+
+const router = express.Router();
+
+router.get('/hw2', async (req, res) => {
+    const {query1, query2} = req.query;
+
+    if(!query1 || !query2) {
+        return res.status(400).json({error: "Missing query"});
+    }
+
+    try {
+        const [res1, res2] = await Promise.all([
+            axios.get(`https://hn.algolia.com/api/v1/search?query=${query1}&tags=story`),
+            axios.get(`https://hn.algolia.com/api/v1/search?query=${query2}&tags=story`)
+        ]);
+        const data1 = res1.data.hits[0];
+        const data2 = res2.data.hits[0];
+
+        const result = {
+            [query1]: data1,
+            [query2]: data2
+        };
+        return res.json(result);
+    } catch(err) {
+        return res.status(500).json({error: err.messgae})
+    }
+});

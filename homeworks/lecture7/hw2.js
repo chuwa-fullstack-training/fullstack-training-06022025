@@ -19,3 +19,49 @@
  */
 
 // your code here
+const http = require('http');
+const url = require('url');
+
+const server = http.createServer((req,res)=>{
+    console.log('Received request:', req.method, req.url); // debug
+
+    if (!req.url) {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Missing URL' }));
+        return;
+    }
+    const parsedUrl = url.parse(req.url, true);
+    const path = parsedUrl.pathname;
+    const iso = parsedUrl.query.iso;
+
+    if (!iso){
+        res.writeHead(400,{'Content-Type':'application/json'});
+        res.end(JSON.stringify({error:"Missing iso query parameter"}));
+        return;
+    }
+
+    const date = new Date(iso);
+    let result;
+
+    if (path === '/api/parsetime'){
+        result = {
+            hour : date.getUTCHours(),
+            minute : date.getUTCMinutes(),
+            second : date.getUTCSeconds()
+        };
+    } else if (path === '/api/unixtime'){
+        result = {
+            unixtime: date.getTime()
+        }
+    } else {
+        res.writeHead(404,{'Content-Type':'application/json'});
+        res.end(JSON.stringify({error:"Not found"}));
+        return;
+    }
+    res.writeHead(400,{'Content-Type':'application/json'});
+    res.end(JSON.stringify(result));
+    });
+
+    const PORT = 8000;
+    server.listen(PORT);
+    console.log(`Server listening on port ${PORT}`);

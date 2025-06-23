@@ -1,18 +1,16 @@
 {
-  "name": "lecture8",
+  "name": "lecture9",
   "version": "1.0.0",
   "description": "",
-  "main": "first.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon middleware.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2",
-    "nodemon": "^2.0.22",
-    "pug": "^3.0.2"
+    "express": "^5.1.0",
+    "mongoose": "^8.16.0"
   }
 }
