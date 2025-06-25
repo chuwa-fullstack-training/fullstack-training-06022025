@@ -1,37 +1,33 @@
-const express = require('express');
+const express = require("express");
+const todoRoutes = require("./routes/todo");
+const connectDB = require("./connect");
+const path = require("path");
 
+const PORT = 3005;
 const app = express();
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
 
-const todos = [
-  { id: 1, todo: 'first thing', done: true },
-  { id: 2, todo: 'second thing', done: false },
-  { id: 3, todo: 'third thing', done: false }
-];
+// Connect to MongoDB and start server
+async function startServer() {
+  try {
+    await connectDB(); // Connect to database
 
-app.get('/', (req, res) => {
-  res.render('index', { todos });
-});
+    // Routes
+    app.use("/", todoRoutes);
 
-app.post('/api/todos', (req, res) => {
-  const todo = req.body.todo;
-  todos.push({ id: todos.length + 1, todo, done: false });
-  res.json(todos);
-});
+    app.listen(PORT, () => {
+      console.log(`Server running on ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Failed to start server:", error);
+    process.exit(1);
+  }
+}
 
-app.put('/api/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  const todo = todos.find(t => t.id === id);
-  todo.done = !todo.done;
-  res.json(todo);
-});
-
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+startServer();
